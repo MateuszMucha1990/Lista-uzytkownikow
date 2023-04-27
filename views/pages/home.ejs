@@ -1,0 +1,8 @@
+
+    <h1>Strona głowna</h1>
+   
+<% if (osoba) { %>
+    <p>Witaj <%- osoba.email %> <%- osoba._id%></p>
+    <% } else {%>
+    <p>Witaj na naszej stronie</p>
+    <% } %>

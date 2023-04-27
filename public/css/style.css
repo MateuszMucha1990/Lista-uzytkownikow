@@ -1,0 +1,9 @@
+body{
+    background: rgb(53,45,185);
+    background: linear-gradient(90deg, rgba(53,45,185,1) 18%, rgba(89,107,59,1) 37%, rgba(116,207,226,1) 87%);
+}
+
+.fota{
+    max-width: 120px;
+    max-height: 120px;
+}

@@ -1,0 +1,63 @@
+<h1>Lista uzytkownikow</h1>
+
+<%- include('partials/search') %> 
+
+<% if (osoba) {%>
+    <a class="btn btn-success mb-3" href="/admin/profile/dodaj">Dodaj nowy profil</a>
+    <% } %>
+    <a href="/csv">Pobierz CSV</a>
+    
+    <form >
+        <div class="row">
+            <div class="row">
+            </div>
+        </div>
+
+    <div class="row">
+      <div class="col-3">
+       
+              <label for="sort" class="form-label">Sortuj wg</label>
+          <select name="sort" id="sort" class="form-control">
+              <option value="">Domyślnie</option>
+              <option value="name|asc" <%- query.sort === 'name|asc' ? 'selected' : '' %>>A-z</option>
+              <option value="name|desc" <%- query.sort === 'name|desc' ? 'selected' : '' %>>Z-a</option>
+              
+              <option value="email" <%- query.sort === 'email' ? 'selected' : ''%>>emial</option>
+          </select>
+          <button class="btn btn-primary mt-3">Szukaj</button>
+          
+      </div>
+  
+      <div class="col-9">
+          <% Lista.forEach(user => { %>
+              <div class="card bg-light mb-3">
+                  <div class="card-body">
+                     <div class="row">
+                        <div class="col-3">
+                            <img src="/uploads/<%- user.image%>" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-9">
+                            <p class="h3 mb-4"><%= user.name %></p>
+                            <p>Kontakt: <%- user.uzytkownik?.email %></p>
+                            <p>CEO: <%- user.uzytkownik?.fullName %></p>
+                            <a href="/profile/<%= user.name %>" class="btn btn-primary">Zobacz</a>
+      
+                            <% if (user.uzytkownik.email == osoba?.email) { %>
+      
+                            <a href="/admin/profile/<%= user.name %>/edytuj" class="btn btn-warning">Edytuj</a>
+                            <a href="/admin/profile/<%= user.name %>/usun" onclick="return confirm('Czy jestes pewny?')" class="btn btn-danger">Usuń</a>
+                             <% } %>
+                        </div>
+
+                        
+                     </div>
+                    </div>
+              </div>
+         
+          <% }); %>
+      </div>
+  </div>
+  
+  <%- include('partials/pagination') %> 
+
+</form>

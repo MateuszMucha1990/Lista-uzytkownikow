@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/img/foto.jpg" class="fota" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-targer="#navbarNav"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link <%- url === '/' ? 'active' : ''%>">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile" class="nav-link <%- url.includes('/profile') ? 'active' : ''%>">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/profile/dodaj" class="nav-link <%- url.includes('/admin/profile/dodaj') ? 'active' : ''%>">Dodaj</a>
+                </li>
+                
+                <% if (!osoba) {%>
+                <li class="nav-item">
+                    <a href="/zarejestruj" class="nav-link <%- url.includes('/zarejestruj') ? 'active' : ''%>">Rejestracja</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/zaloguj" class="nav-link <%- url.includes('/zaloguj') ? 'active' : ''%>">Login</a>
+                </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a href="/admin/editprofil" class="nav-link <%- url.includes('/editprofil') ? 'active' : ''%>">Edycja profilu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/wyloguj" class="nav-link">Wyloguj</a>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

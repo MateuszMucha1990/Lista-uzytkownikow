@@ -1,0 +1,64 @@
+
+
+<form method="POST" enctype="multipart/form-data" >
+    <div class="mb-3">
+        <label for="" class="form-label">Nazwa firmy</label>
+        <input type="text" 
+            name="name" 
+            value="<%= form.name%>"
+            class="form-control 
+            <%- errors?.name ? 'is-invalid' : '' %>">
+        
+        <% if (errors?.name) { %>
+           <div class="invalid-feedback"> <%= errors.name.message %></div>
+        <% } %>
+    </div>
+
+    <% if (showFile){ %>
+        <% if (form.image) { %>
+            <div class="row">
+                <div class="col">
+                    <img src="/uploads/<%- form.image %>" class="img-fluid" alt="">
+                    <a href="/admin/profile/<%- form.name%>/usun-zdjecie" class="btn btn-sn btn-danger">Usuń</a>
+                </div>
+            </div>
+            <% } %>
+    <div class="mb-3">
+        <label for="image" class="form-label">Zdjęcie</label>
+        <input type="file" name="image" class="form-control" id="image">
+    </div>
+    <% } %>
+
+    <div class="mb-3">
+        <label for="" class="form-label">email</label>
+        <input type="text" 
+        name="email"
+        value="<%= form.email%>"
+        class="form-control
+        <%- errors?.email ? 'is-invalid' : '' %> ">
+
+        <% if (errors?.email) { %>
+            <div class="invalid-feedback"> <%= errors.email.message %></div>
+         <% } %>
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">hasło</label>
+        <input type="text" 
+        name="password" 
+        value="<%= form.password%>"
+        class="form-control">
+    </div>
+
+    <button class="btn btn-primary"><%- buttonText %></button>
+</form>
+
+<% if (errors) { %>
+    <div class="alert alert-danger">
+        <ul>
+            <% for (const key in errors) { %>
+                <li><%= errors[key].message %></li>
+                <% } %>
+            </ul>
+    </div>
+<% } %>

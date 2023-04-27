@@ -1,0 +1,21 @@
+const Osoba = require('../db/models/osoba');
+
+module.exports = async function (req,res,next) {
+    // console.log(req.headers);
+    const token = req.headers.authorization?.split(" ")[1];
+
+    //spr czy token (authorization) jest podane
+    if (!token){
+        res.status(403).json({message:'Brak dostepu'})
+    }
+    const osoba = await Osoba.findOne({apiToken: token});
+    
+     console.log(osoba);
+    if(!osoba){   //jesli nie ma uzyt to dost zabroniony
+        res.status(403).json({message:'Brak dostepu'})
+    }
+        req.osoba= osoba; // jesli jest uzyt, to zeby pozniej móc uzyc w controllerze
+    
+    next();
+
+}
